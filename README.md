@@ -9,10 +9,14 @@ A Powerful Few-shot Voice Conversion and Text-to-Speech WebUI.<br><br>
 
 <!-- img src="https://counter.seku.su/cmoe?name=gptsovits&theme=r34" /><br> -->
 
-[![Open In Colab](https://img.shields.io/badge/Colab-F9AB00?style=for-the-badge&logo=googlecolab&color=525252)](https://colab.research.google.com/github/RVC-Boss/GPT-SoVITS/blob/main/colab_webui.ipynb)
-[![License](https://img.shields.io/badge/LICENSE-MIT-green.svg?style=for-the-badge)](https://github.com/RVC-Boss/GPT-SoVITS/blob/main/LICENSE)
-[![Huggingface](https://img.shields.io/badge/🤗%20-online%20demo-yellow.svg?style=for-the-badge)](https://huggingface.co/spaces/lj1995/GPT-SoVITS-v2)
-[![Discord](https://img.shields.io/discord/1198701940511617164?color=%23738ADB&label=Discord&style=for-the-badge)](https://discord.gg/dnrgs5GHfG)
+[![Train In Colab](https://img.shields.io/badge/Colab-Training-F9AB00?style=for-the-badge&logo=googlecolab)](https://colab.research.google.com/github/RVC-Boss/GPT-SoVITS/blob/main/Colab-WebUI.ipynb)
+[![License](https://img.shields.io/badge/LICENSE-MIT-green.svg?style=for-the-badge&logo=opensourceinitiative)](https://github.com/RVC-Boss/GPT-SoVITS/blob/main/LICENSE)
+[![Huggingface](https://img.shields.io/badge/HuggingFace-demo-blue.svg?style=for-the-badge&logo=huggingface)](https://huggingface.co/spaces/lj1995/GPT-SoVITS-v2)
+[![Image Size](https://img.shields.io/docker/image-size/xxxxrt666/gpt-sovits/latest?style=for-the-badge&logo=docker)](https://hub.docker.com/r/xxxxrt666/gpt-sovits)
+
+[![简体中文](https://img.shields.io/badge/简体中文-阅读文档-blue?style=for-the-badge&logo=googledocs&logoColor=white)](https://www.yuque.com/baicaigongchang1145haoyuangong/ib3g1e)
+[![English](https://img.shields.io/badge/English-Read%20Docs-blue?style=for-the-badge&logo=googledocs&logoColor=white)](https://rentry.co/GPT-SoVITS-guide#/)
+[![Change Log](https://img.shields.io/badge/Change%20Log-View%20Updates-blue?style=for-the-badge&logo=googledocs&logoColor=white)](https://github.com/RVC-Boss/GPT-SoVITS/blob/main/docs/en/Changelog_EN.md)
 
 **English** | [**中文简体**](./docs/cn/README.md) | [**日本語**](./docs/ja/README.md) | [**한국어**](./docs/ko/README.md) | [**Türkçe**](./docs/tr/README.md)
 
@@ -44,15 +48,15 @@ For users in China, you can [click here](https://www.codewithgpu.com/i/RVC-Boss/
 
 ### Tested Environments
 
-| Python Version | PyTorch Version  | Device          |
-|----------------|------------------|-----------------|
-| Python 3.9     | PyTorch 2.0.1    | CUDA 11.8       |
-| Python 3.10.13 | PyTorch 2.1.2    | CUDA 12.3       |
-| Python 3.10.17 | PyTorch 2.5.1    | CUDA 12.4       |
-| Python 3.9     | PyTorch 2.5.1    | Apple silicon   |
-| Python 3.11    | PyTorch 2.6.0    | Apple silicon   |
-| Python 3.9     | PyTorch 2.2.2    | CPU             |
-| Python 3.9     | PyTorch 2.8.0dev | CUDA12.8(for Nvidia50x0)  |
+| Python Version | PyTorch Version  | Device        |
+| -------------- | ---------------- | ------------- |
+| Python 3.10    | PyTorch 2.5.1    | CUDA 12.4     |
+| Python 3.11    | PyTorch 2.5.1    | CUDA 12.4     |
+| Python 3.11    | PyTorch 2.7.0    | CUDA 12.8     |
+| Python 3.9     | PyTorch 2.8.0dev | CUDA 12.8     |
+| Python 3.9     | PyTorch 2.5.1    | Apple silicon |
+| Python 3.11    | PyTorch 2.7.0    | Apple silicon |
+| Python 3.9     | PyTorch 2.2.2    | CPU           |
 
 ### Windows
 
@@ -60,34 +64,52 @@ If you are a Windows user (tested with win>=10), you can [download the integrate
 
 **Users in China can [download the package here](https://www.yuque.com/baicaigongchang1145haoyuangong/ib3g1e/dkxgpiy9zb96hob4#KTvnO).**
 
+Install the program by running the following commands:
+
+```pwsh
+conda create -n GPTSoVits python=3.10
+conda activate GPTSoVits
+pwsh -F install.ps1 --Device <CU126|CU128|CPU> --Source <HF|HF-Mirror|ModelScope> [--DownloadUVR5]
+```
+
 ### Linux
 
 ```bash
-conda create -n GPTSoVits python=3.9
+conda create -n GPTSoVits python=3.10
 conda activate GPTSoVits
-bash install.sh --source <HF|HF-Mirror|ModelScope> [--download-uvr5]
+bash install.sh --device <CU126|CU128|ROCM|CPU> --source <HF|HF-Mirror|ModelScope> [--download-uvr5]
 ```
 
 ### macOS
 
 **Note: The models trained with GPUs on Macs result in significantly lower quality compared to those trained on other devices, so we are temporarily using CPUs instead.**
 
-1. Install Xcode command-line tools by running `xcode-select --install`.
-2. Install the program by running the following commands:
+Install the program by running the following commands:
 
 ```bash
-conda create -n GPTSoVits python=3.9
+conda create -n GPTSoVits python=3.10
 conda activate GPTSoVits
-bash install.sh --source <HF|HF-Mirror|ModelScope> [--download-uvr5]
+bash install.sh --device <MPS|CPU> --source <HF|HF-Mirror|ModelScope> [--download-uvr5]
 ```
 
 ### Install Manually
+
+#### Install Dependences
+
+```bash
+conda create -n GPTSoVits python=3.10
+conda activate GPTSoVits
+
+pip install -r extra-req.txt --no-deps
+pip install -r requirements.txt
+```
 
 #### Install FFmpeg
 
 ##### Conda Users
 
 ```bash
+conda activate GPTSoVits
 conda install ffmpeg
 ```
 
@@ -96,14 +118,13 @@ conda install ffmpeg
 ```bash
 sudo apt install ffmpeg
 sudo apt install libsox-dev
-conda install -c conda-forge 'ffmpeg<7'
 ```
 
 ##### Windows Users
 
-Download and place [ffmpeg.exe](https://huggingface.co/lj1995/VoiceConversionWebUI/blob/main/ffmpeg.exe) and [ffprobe.exe](https://huggingface.co/lj1995/VoiceConversionWebUI/blob/main/ffprobe.exe) in the GPT-SoVITS root.
+Download and place [ffmpeg.exe](https://huggingface.co/lj1995/VoiceConversionWebUI/blob/main/ffmpeg.exe) and [ffprobe.exe](https://huggingface.co/lj1995/VoiceConversionWebUI/blob/main/ffprobe.exe) in the GPT-SoVITS root
 
-Install [Visual Studio 2017](https://aka.ms/vs/17/release/vc_redist.x86.exe) (Korean TTS Only)
+Install [Visual Studio 2017](https://aka.ms/vs/17/release/vc_redist.x86.exe)
 
 ##### MacOS Users
 
@@ -111,36 +132,54 @@ Install [Visual Studio 2017](https://aka.ms/vs/17/release/vc_redist.x86.exe) (Ko
 brew install ffmpeg
 ```
 
-#### Install Dependences
+### Running GPT-SoVITS with Docker
+
+#### Docker Image Selection
+
+Due to rapid development in the codebase and a slower Docker image release cycle, please:
+
+- Check [Docker Hub](https://hub.docker.com/r/xxxxrt666/gpt-sovits) for the latest available image tags
+- Choose an appropriate image tag for your environment
+- `Lite` means the Docker image **does not include** ASR models and UVR5 models. You can manually download the UVR5 models, while the program will automatically download the ASR models as needed
+- The appropriate architecture image (amd64/arm64) will be automatically pulled during Docker Compose
+- Docker Compose will mount **all files** in the current directory. Please switch to the project root directory and **pull the latest code** before using the Docker image
+- Optionally, build the image locally using the provided Dockerfile for the most up-to-date changes
+
+#### Environment Variables
+
+- `is_half`: Controls whether half-precision (fp16) is enabled. Set to `true` if your GPU supports it to reduce memory usage.
+
+#### Shared Memory Configuration
+
+On Windows (Docker Desktop), the default shared memory size is small and may cause unexpected behavior. Increase `shm_size` (e.g., to `16g`) in your Docker Compose file based on your available system memory.
+
+#### Choosing a Service
+
+The `docker-compose.yaml` defines two services:
+
+- `GPT-SoVITS-CU126` & `GPT-SoVITS-CU128`: Full version with all features.
+- `GPT-SoVITS-CU126-Lite` & `GPT-SoVITS-CU128-Lite`: Lightweight version with reduced dependencies and functionality.
+
+To run a specific service with Docker Compose, use:
 
 ```bash
-pip install -r extra-req.txt --no-deps
-pip install -r requirements.txt
+docker compose run --service-ports <GPT-SoVITS-CU126-Lite|GPT-SoVITS-CU128-Lite|GPT-SoVITS-CU126|GPT-SoVITS-CU128>
 ```
 
-### Using Docker
+#### Building the Docker Image Locally
 
-#### docker-compose.yaml configuration
+If you want to build the image yourself, use:
 
-0. Regarding image tags: Due to rapid updates in the codebase and the slow process of packaging and testing images, please check [Docker Hub](https://hub.docker.com/r/breakstring/gpt-sovits)(outdated) for the currently packaged latest images and select as per your situation, or alternatively, build locally using a Dockerfile according to your own needs.
-1. Environment Variables: 
-   - is_half: Controls half-precision/double-precision. This is typically the cause if the content under the directories 4-cnhubert/5-wav32k is not generated correctly during the "SSL extracting" step. Adjust to True or False based on your actual situation.
-2. Volumes Configuration, The application's root directory inside the container is set to /workspace. The default docker-compose.yaml lists some practical examples for uploading/downloading content.
-3. shm_size: The default available memory for Docker Desktop on Windows is too small, which can cause abnormal operations. Adjust according to your own situation.
-4. Under the deploy section, GPU-related settings should be adjusted cautiously according to your system and actual circumstances.
-
-#### Running with docker compose
-
-```
-docker compose -f "docker-compose.yaml" up -d
+```bash
+bash docker_build.sh --cuda <12.6|12.8> [--lite]
 ```
 
-#### Running with docker command
+#### Accessing the Running Container (Bash Shell)
 
-As above, modify the corresponding parameters based on your actual situation, then run the following command:
+Once the container is running in the background, you can access it using:
 
-```
-docker run --rm -it --gpus=all --env=is_half=False --volume=G:\GPT-SoVITS-DockerTest\output:/workspace/output --volume=G:\GPT-SoVITS-DockerTest\logs:/workspace/logs --volume=G:\GPT-SoVITS-DockerTest\SoVITS_weights:/workspace/SoVITS_weights --workdir=/workspace -p 9880:9880 -p 9871:9871 -p 9872:9872 -p 9873:9873 -p 9874:9874 --shm-size="16G" -d breakstring/gpt-sovits:xxxxx
+```bash
+docker exec -it <GPT-SoVITS-CU126-Lite|GPT-SoVITS-CU128-Lite|GPT-SoVITS-CU126|GPT-SoVITS-CU128> bash
 ```
 
 ## Pretrained Models
@@ -168,7 +207,9 @@ docker run --rm -it --gpus=all --env=is_half=False --volume=G:\GPT-SoVITS-Docker
 The TTS annotation .list file format:
 
 ```
+
 vocal_path|speaker_name|language|text
+
 ```
 
 Language dictionary:
@@ -182,7 +223,9 @@ Language dictionary:
 Example:
 
 ```
+
 D:\GPT-SoVITS\xxx/xxx.wav|xxx|en|I like playing Genshin.
+
 ```
 
 ## Finetune and inference
@@ -212,12 +255,12 @@ Or maunally switch version in WebUI
 
 #### Path Auto-filling is now supported
 
-    1. Fill in the audio path
-    2. Slice the audio into small chunks
-    3. Denoise(optinal)
-    4. ASR
-    5. Proofreading ASR transcriptions
-    6. Go to the next Tab, then finetune the model
+1. Fill in the audio path
+2. Slice the audio into small chunks
+3. Denoise(optinal)
+4. ASR
+5. Proofreading ASR transcriptions
+6. Go to the next Tab, then finetune the model
 
 ### Open Inference WebUI
 
@@ -259,7 +302,7 @@ Use v2 from v1 environment:
 
 2. Clone the latest codes from github.
 
-3. Download v2 pretrained models from [huggingface](https://huggingface.co/lj1995/GPT-SoVITS/tree/main/gsv-v2final-pretrained) and put them into `GPT_SoVITS\pretrained_models\gsv-v2final-pretrained`.
+3. Download v2 pretrained models from [huggingface](https://huggingface.co/lj1995/GPT-SoVITS/tree/main/gsv-v2final-pretrained) and put them into `GPT_SoVITS/pretrained_models/gsv-v2final-pretrained`.
 
    Chinese v2 additional: [G2PWModel.zip(HF)](https://huggingface.co/XXXXRT/GPT-SoVITS-Pretrained/resolve/main/G2PWModel.zip)| [G2PWModel.zip(ModelScope)](https://www.modelscope.cn/models/XXXXRT/GPT-SoVITS-Pretrained/resolve/master/G2PWModel.zip)(Download G2PW models, unzip and rename to `G2PWModel`, and then place them in `GPT_SoVITS/text`.)
 
@@ -279,7 +322,7 @@ Use v3 from v2 environment:
 
 2. Clone the latest codes from github.
 
-3. Download v3 pretrained models (s1v3.ckpt, s2Gv3.pth and models--nvidia--bigvgan_v2_24khz_100band_256x folder) from [huggingface](https://huggingface.co/lj1995/GPT-SoVITS/tree/main) and put them into `GPT_SoVITS\pretrained_models`.
+3. Download v3 pretrained models (s1v3.ckpt, s2Gv3.pth and models--nvidia--bigvgan_v2_24khz_100band_256x folder) from [huggingface](https://huggingface.co/lj1995/GPT-SoVITS/tree/main) and put them into `GPT_SoVITS/pretrained_models`.
 
    additional: for Audio Super Resolution model, you can read [how to download](./tools/AP_BWE_main/24kto48k/readme.txt)
 
@@ -296,7 +339,24 @@ Use v4 from v1/v2/v3 environment:
 
 2. Clone the latest codes from github.
 
-3. Download v4 pretrained models (gsv-v4-pretrained/s2v4.ckpt, and gsv-v4-pretrained/vocoder.pth) from [huggingface](https://huggingface.co/lj1995/GPT-SoVITS/tree/main) and put them into `GPT_SoVITS\pretrained_models`.
+3. Download v4 pretrained models (gsv-v4-pretrained/s2v4.ckpt, and gsv-v4-pretrained/vocoder.pth) from [huggingface](https://huggingface.co/lj1995/GPT-SoVITS/tree/main) and put them into `GPT_SoVITS/pretrained_models`.
+
+## V2Pro Release Notes
+
+New Features:
+
+1. Slightly higher VRAM usage than v2, surpassing v4's performance, with v2's hardware cost and speed.
+   [more details](<https://github.com/RVC-Boss/GPT-SoVITS/wiki/GPT%E2%80%90SoVITS%E2%80%90features-(%E5%90%84%E7%89%88%E6%9C%AC%E7%89%B9%E6%80%A7)>)
+
+2.v1/v2 and the v2Pro series share the same characteristics, while v3/v4 have similar features. For training sets with average audio quality, v1/v2/v2Pro can deliver decent results, but v3/v4 cannot. Additionally, the synthesized tone and timebre of v3/v4 lean more toward the reference audio rather than the overall training set.
+
+Use v2Pro from v1/v2/v3/v4 environment:
+
+1. `pip install -r requirements.txt` to update some packages
+
+2. Clone the latest codes from github.
+
+3. Download v2Pro pretrained models (v2Pro/s2Dv2Pro.pth, v2Pro/s2Gv2Pro.pth, v2Pro/s2Dv2ProPlus.pth, v2Pro/s2Gv2ProPlus.pth, and sv/pretrained_eres2netv2w24s4ep4.ckpt) from [huggingface](https://huggingface.co/lj1995/GPT-SoVITS/tree/main) and put them into `GPT_SoVITS/pretrained_models`.
 
 ## Todo List
 
@@ -322,7 +382,7 @@ Use v4 from v1/v2/v3 environment:
 
 Use the command line to open the WebUI for UVR5
 
-```
+```bash
 python tools/uvr5/webui.py "<infer_device>" <is_half> <webui_port_uvr5>
 ```
 
@@ -333,7 +393,7 @@ python mdxnet.py --model --input_root --output_vocal --output_ins --agg_level --
 
 This is how the audio segmentation of the dataset is done using the command line
 
-```
+```bash
 python audio_slicer.py \
     --input_path "<path_to_original_audio_file_or_directory>" \
     --output_root "<directory_where_subdivided_audio_clips_will_be_saved>" \
@@ -345,7 +405,7 @@ python audio_slicer.py \
 
 This is how dataset ASR processing is done using the command line(Only Chinese)
 
-```
+```bash
 python tools/asr/funasr_asr.py -i <input> -o <output>
 ```
 
@@ -353,7 +413,7 @@ ASR processing is performed through Faster_Whisper(ASR marking except Chinese)
 
 (No progress bars, GPU performance may cause time delays)
 
-```
+```bash
 python ./tools/asr/fasterwhisper_asr.py -i <input> -o <output> -l <language> -p <precision>
 ```
 
@@ -380,6 +440,7 @@ Special thanks to the following projects and contributors:
 - [Chinese Speech Pretrain](https://github.com/TencentGameMate/chinese_speech_pretrain)
 - [Chinese-Roberta-WWM-Ext-Large](https://huggingface.co/hfl/chinese-roberta-wwm-ext-large)
 - [BigVGAN](https://github.com/NVIDIA/BigVGAN)
+- [eresnetv2](https://modelscope.cn/models/iic/speech_eres2netv2w24s4ep4_sv_zh-cn_16k-common)
 
 ### Text Frontend for Inference
 

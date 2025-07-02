@@ -5,12 +5,16 @@
 
 [![madewithlove](https://img.shields.io/badge/made_with-%E2%9D%A4-red?style=for-the-badge&labelColor=orange)](https://github.com/RVC-Boss/GPT-SoVITS)
 
-<img src="https://counter.seku.su/cmoe?name=gptsovits&theme=r34" /><br>
+<a href="https://trendshift.io/repositories/7033" target="_blank"><img src="https://trendshift.io/api/badge/repositories/7033" alt="RVC-Boss%2FGPT-SoVITS | Trendshift" style="width: 250px; height: 55px;" width="250" height="55"/></a>
 
-[![Open In Colab](https://img.shields.io/badge/Colab-F9AB00?style=for-the-badge&logo=googlecolab&color=525252)](https://colab.research.google.com/github/RVC-Boss/GPT-SoVITS/blob/main/colab_webui.ipynb)
-[![License](https://img.shields.io/badge/LICENSE-MIT-green.svg?style=for-the-badge)](https://github.com/RVC-Boss/GPT-SoVITS/blob/main/LICENSE)
-[![Huggingface](https://img.shields.io/badge/🤗%20-online%20demo-yellow.svg?style=for-the-badge)](https://huggingface.co/spaces/lj1995/GPT-SoVITS-v2)
-[![Discord](https://img.shields.io/discord/1198701940511617164?color=%23738ADB&label=Discord&style=for-the-badge)](https://discord.gg/dnrgs5GHfG)
+[![Train In Colab](https://img.shields.io/badge/Colab-Training-F9AB00?style=for-the-badge&logo=googlecolab)](https://colab.research.google.com/github/RVC-Boss/GPT-SoVITS/blob/main/Colab-WebUI.ipynb)
+[![License](https://img.shields.io/badge/LICENSE-MIT-green.svg?style=for-the-badge&logo=opensourceinitiative)](https://github.com/RVC-Boss/GPT-SoVITS/blob/main/LICENSE)
+[![Huggingface](https://img.shields.io/badge/HuggingFace-demo-blue.svg?style=for-the-badge&logo=huggingface)](https://huggingface.co/spaces/lj1995/GPT-SoVITS-v2)
+[![Image Size](https://img.shields.io/docker/image-size/xxxxrt666/gpt-sovits/latest?style=for-the-badge&logo=docker)](https://hub.docker.com/r/xxxxrt666/gpt-sovits)
+
+[![简体中文](https://img.shields.io/badge/简体中文-阅读文档-blue?style=for-the-badge&logo=googledocs&logoColor=white)](https://www.yuque.com/baicaigongchang1145haoyuangong/ib3g1e)
+[![English](https://img.shields.io/badge/English-Read%20Docs-blue?style=for-the-badge&logo=googledocs&logoColor=white)](https://rentry.co/GPT-SoVITS-guide#/)
+[![Change Log](https://img.shields.io/badge/Change%20Log-View%20Updates-blue?style=for-the-badge&logo=googledocs&logoColor=white)](https://github.com/RVC-Boss/GPT-SoVITS/blob/main/docs/ko/Changelog_KO.md)
 
 [**English**](../../README.md) | [**中文简体**](../cn/README.md) | [**日本語**](../ja/README.md) | **한국어** | [**Türkçe**](../tr/README.md)
 
@@ -40,47 +44,64 @@ https://github.com/RVC-Boss/GPT-SoVITS/assets/129054828/05bee1fa-bdd8-4d85-9350-
 
 ### 테스트 통과 환경
 
-| Python Version | PyTorch Version  | Device          |
-|----------------|------------------|-----------------|
-| Python 3.9     | PyTorch 2.0.1    | CUDA 11.8       |
-| Python 3.10.13 | PyTorch 2.1.2    | CUDA 12.3       |
-| Python 3.10.17 | PyTorch 2.5.1    | CUDA 12.4       |
-| Python 3.9     | PyTorch 2.5.1    | Apple silicon   |
-| Python 3.11    | PyTorch 2.6.0    | Apple silicon   |
-| Python 3.9     | PyTorch 2.2.2    | CPU             |
+| Python Version | PyTorch Version  | Device        |
+| -------------- | ---------------- | ------------- |
+| Python 3.10    | PyTorch 2.5.1    | CUDA 12.4     |
+| Python 3.11    | PyTorch 2.5.1    | CUDA 12.4     |
+| Python 3.11    | PyTorch 2.7.0    | CUDA 12.8     |
+| Python 3.9     | PyTorch 2.8.0dev | CUDA 12.8     |
+| Python 3.9     | PyTorch 2.5.1    | Apple silicon |
+| Python 3.11    | PyTorch 2.7.0    | Apple silicon |
+| Python 3.9     | PyTorch 2.2.2    | CPU           |
 
 ### Windows
 
 Windows 사용자라면 (win>=10에서 테스트됨), [통합 패키지를 다운로드](https://huggingface.co/lj1995/GPT-SoVITS-windows-package/resolve/main/GPT-SoVITS-v3lora-20250228.7z?download=true)한 후 압축을 풀고 _go-webui.bat_ 파일을 더블 클릭하면 GPT-SoVITS-WebUI를 시작할 수 있습니다.
 
+```pwsh
+conda create -n GPTSoVits python=3.10
+conda activate GPTSoVits
+pwsh -F install.ps1 --Device <CU126|CU128|CPU> --Source <HF|HF-Mirror|ModelScope> [--DownloadUVR5]
+```
+
 ### Linux
 
 ```bash
-conda create -n GPTSoVits python=3.9
+conda create -n GPTSoVits python=3.10
 conda activate GPTSoVits
-bash install.sh --source <HF|HF-Mirror|ModelScope> [--download-uvr5]
+bash install.sh --device <CU126|CU128|ROCM|CPU> --source <HF|HF-Mirror|ModelScope> [--download-uvr5]
 ```
 
 ### macOS
 
 **주의: Mac에서 GPU로 훈련된 모델은 다른 OS에서 훈련된 모델에 비해 품질이 낮습니다. 해당 문제를 해결하기 전까지 MacOS에선 CPU를 사용하여 훈련을 진행합니다.**
 
-1. `xcode-select --install`을 실행하여 Xcode 커맨드라인 도구를 설치하세요.
-2. 다음 명령어를 실행하여 이 프로젝트를 설치하세요.
+다음 명령어를 실행하여 이 프로젝트를 설치하세요
 
 ```bash
-conda create -n GPTSoVits python=3.9
+conda create -n GPTSoVits python=3.10
 conda activate GPTSoVits
-bash install.sh --source <HF|HF-Mirror|ModelScope> [--download-uvr5]
+bash install.sh --device <MPS|CPU> --source <HF|HF-Mirror|ModelScope> [--download-uvr5]
 ```
 
 ### 수동 설치
+
+#### 의존성 설치
+
+```bash
+conda create -n GPTSoVits python=3.10
+conda activate GPTSoVits
+
+pip install -r extra-req.txt --no-deps
+pip install -r requirements.txt
+```
 
 #### FFmpeg 설치
 
 ##### Conda 사용자
 
 ```bash
+conda activate GPTSoVits
 conda install ffmpeg
 ```
 
@@ -89,14 +110,13 @@ conda install ffmpeg
 ```bash
 sudo apt install ffmpeg
 sudo apt install libsox-dev
-conda install -c conda-forge 'ffmpeg<7'
 ```
 
 ##### Windows 사용자
 
-[ffmpeg.exe](https://huggingface.co/lj1995/VoiceConversionWebUI/blob/main/ffmpeg.exe)와 [ffprobe.exe](https://huggingface.co/lj1995/VoiceConversionWebUI/blob/main/ffprobe.exe)를 GPT-SoVITS root 디렉토리에 넣습니다.
+[ffmpeg.exe](https://huggingface.co/lj1995/VoiceConversionWebUI/blob/main/ffmpeg.exe)와 [ffprobe.exe](https://huggingface.co/lj1995/VoiceConversionWebUI/blob/main/ffprobe.exe)를 GPT-SoVITS root 디렉토리에 넣습니다
 
-[Visual Studio 2017](https://aka.ms/vs/17/release/vc_redist.x86.exe) 설치 (Korean TTS 전용)
+[Visual Studio 2017](https://aka.ms/vs/17/release/vc_redist.x86.exe) 설치
 
 ##### MacOS 사용자
 
@@ -104,41 +124,54 @@ conda install -c conda-forge 'ffmpeg<7'
 brew install ffmpeg
 ```
 
-#### 의존성 설치
+### GPT-SoVITS 실행하기 (Docker 사용)
+
+#### Docker 이미지 선택
+
+코드베이스가 빠르게 업데이트되는 반면 Docker 이미지 릴리스 주기는 느리기 때문에 다음을 참고하세요:
+
+- [Docker Hub](https://hub.docker.com/r/xxxxrt666/gpt-sovits)에서 최신 이미지 태그를 확인하세요
+- 환경에 맞는 적절한 이미지 태그를 선택하세요
+- `Lite` 는 Docker 이미지에 ASR 모델과 UVR5 모델이 **포함되어 있지 않음**을 의미합니다. UVR5 모델은 사용자가 직접 다운로드해야 하며, ASR 모델은 필요 시 프로그램이 자동으로 다운로드합니다
+- Docker Compose 실행 시, 해당 아키텍처에 맞는 이미지(amd64 또는 arm64)가 자동으로 다운로드됩니다
+- Docker Compose는 현재 디렉터리의 **모든 파일**을 마운트합니다. Docker 이미지를 사용하기 전에 프로젝트 루트 디렉터리로 이동하여 코드를 **최신 상태로 업데이트**하세요
+- 선택 사항: 최신 변경사항을 반영하려면 제공된 Dockerfile을 사용하여 로컬에서 직접 이미지를 빌드할 수 있습니다
+
+#### 환경 변수
+
+- `is_half`: 반정밀도(fp16) 사용 여부를 제어합니다. GPU가 지원하는 경우 `true`로 설정하면 메모리 사용량을 줄일 수 있습니다
+
+#### 공유 메모리 설정
+
+Windows(Docker Desktop)에서는 기본 공유 메모리 크기가 작아 예기치 않은 동작이 발생할 수 있습니다. 시스템 메모리 상황에 따라 Docker Compose 파일에서 `shm_size`를 (예: `16g`)로 증가시키는 것이 좋습니다
+
+#### 서비스 선택
+
+`docker-compose.yaml` 파일에는 두 가지 서비스 유형이 정의되어 있습니다:
+
+- `GPT-SoVITS-CU126` 및 `GPT-SoVITS-CU128`: 전체 기능을 포함한 풀 버전
+- `GPT-SoVITS-CU126-Lite` 및 `GPT-SoVITS-CU128-Lite`: 의존성이 줄어든 경량 버전
+
+특정 서비스를 Docker Compose로 실행하려면 다음 명령을 사용하세요:
 
 ```bash
-pip install -r extra-req.txt --no-deps
-pip install -r requirements.txt
+docker compose run --service-ports <GPT-SoVITS-CU126-Lite|GPT-SoVITS-CU128-Lite|GPT-SoVITS-CU126|GPT-SoVITS-CU128>
 ```
 
-### Docker에서 사용
+#### Docker 이미지 직접 빌드하기
 
-#### docker-compose.yaml 설정
+직접 이미지를 빌드하려면 다음 명령어를 사용하세요:
 
-0. 이미지 태그: 코드 저장소가 빠르게 업데이트되고 패키지가 느리게 빌드되고 테스트되므로, 현재 빌드된 최신 도커 이미지를 [Docker Hub](https://hub.docker.com/r/breakstring/gpt-sovits)(오래된 버전) 에서 확인하고 필요에 따라 Dockerfile을 사용하여 로컬에서 빌드할 수 있습니다.
-
-1. 환경 변수:
-
-- is_half: 반정밀/배정밀 제어. "SSL 추출" 단계에서 4-cnhubert/5-wav32k 디렉토리의 내용을 올바르게 생성할 수 없는 경우, 일반적으로 이것 때문입니다. 실제 상황에 따라 True 또는 False로 조정할 수 있습니다.
-
-2. 볼륨 설정, 컨테이너 내의 애플리케이션 루트 디렉토리를 /workspace로 설정합니다. 기본 docker-compose.yaml에는 실제 예제가 나열되어 있으므로 업로드/다운로드를 쉽게 할 수 있습니다.
-
-3. shm_size: Windows의 Docker Desktop의 기본 사용 가능한 메모리가 너무 작아 오류가 발생할 수 있으므로 실제 상황에 따라 조정합니다.
-
-4. deploy 섹션의 gpu 관련 내용은 시스템 및 실제 상황에 따라 조정합니다.
-
-#### docker compose로 실행
-
-```
-docker compose -f "docker-compose.yaml" up -d
+```bash
+bash docker_build.sh --cuda <12.6|12.8> [--lite]
 ```
 
-#### docker 명령으로 실행
+#### 실행 중인 컨테이너 접속하기 (Bash Shell)
 
-위와 동일하게 실제 상황에 맞게 매개변수를 수정한 다음 다음 명령을 실행합니다:
+컨테이너가 백그라운드에서 실행 중일 때 다음 명령어로 셸에 접속할 수 있습니다:
 
-```
-docker run --rm -it --gpus=all --env=is_half=False --volume=G:\GPT-SoVITS-DockerTest\output:/workspace/output --volume=G:\GPT-SoVITS-DockerTest\logs:/workspace/logs --volume=G:\GPT-SoVITS-DockerTest\SoVITS_weights:/workspace/SoVITS_weights --workdir=/workspace -p 9880:9880 -p 9871:9871 -p 9872:9872 -p 9873:9873 -p 9874:9874 --shm-size="16G" -d breakstring/gpt-sovits:xxxxx
+```bash
+docker exec -it <GPT-SoVITS-CU126-Lite|GPT-SoVITS-CU128-Lite|GPT-SoVITS-CU126|GPT-SoVITS-CU128> bash
 ```
 
 ## 사전 학습된 모델
@@ -206,12 +239,12 @@ python webui.py v1 <언어(옵션)>
 
 #### 경로 자동 채우기가 지원됩니다
 
-    1. 오디오 경로를 입력하십시오.
-    2. 오디오를 작은 청크로 분할하십시오.
-    3. 노이즈 제거(옵션)
-    4. ASR 수행
-    5. ASR 전사를 교정하십시오.
-    6. 다음 탭으로 이동하여 모델을 미세 조정하십시오.
+1. 오디오 경로를 입력하십시오.
+2. 오디오를 작은 청크로 분할하십시오.
+3. 노이즈 제거(옵션)
+4. ASR 수행
+5. ASR 전사를 교정하십시오.
+6. 다음 탭으로 이동하여 모델을 미세 조정하십시오.
 
 ### 추론 WebUI 열기
 
@@ -253,7 +286,7 @@ V1 환경에서 V2를 사용하려면:
 
 2. github에서 최신 코드를 클론하십시오.
 
-3. [huggingface](https://huggingface.co/lj1995/GPT-SoVITS/tree/main/gsv-v2final-pretrained)에서 V2 사전 학습 모델을 다운로드하여 `GPT_SoVITS\pretrained_models\gsv-v2final-pretrained`에 넣으십시오.
+3. [huggingface](https://huggingface.co/lj1995/GPT-SoVITS/tree/main/gsv-v2final-pretrained)에서 V2 사전 학습 모델을 다운로드하여 `GPT_SoVITS/pretrained_models/gsv-v2final-pretrained`에 넣으십시오.
 
    중국어 V2 추가: [G2PWModel.zip(HF)](https://huggingface.co/XXXXRT/GPT-SoVITS-Pretrained/resolve/main/G2PWModel.zip)| [G2PWModel.zip(ModelScope)](https://www.modelscope.cn/models/XXXXRT/GPT-SoVITS-Pretrained/resolve/master/G2PWModel.zip) (G2PW 모델을 다운로드하여 압축을 풀고 `G2PWModel`로 이름을 변경한 다음 `GPT_SoVITS/text`에 배치합니다.)
 
@@ -273,9 +306,41 @@ v2 환경에서 v3 사용하기:
 
 2. 최신 코드를 github 에서 클론합니다.
 
-3. v3 사전 훈련된 모델(s1v3.ckpt, s2Gv3.pth, 그리고 models--nvidia--bigvgan_v2_24khz_100band_256x 폴더)을 [huggingface](https://huggingface.co/lj1995/GPT-SoVITS/tree/main)에서 다운로드하여 `GPT_SoVITS\pretrained_models` 폴더에 넣습니다.
+3. v3 사전 훈련된 모델(s1v3.ckpt, s2Gv3.pth, 그리고 models--nvidia--bigvgan_v2_24khz_100band_256x 폴더)을 [huggingface](https://huggingface.co/lj1995/GPT-SoVITS/tree/main)에서 다운로드하여 `GPT_SoVITS/pretrained_models` 폴더에 넣습니다.
 
    추가: 오디오 슈퍼 해상도 모델에 대해서는 [다운로드 방법](../../tools/AP_BWE_main/24kto48k/readme.txt)을 참고하세요.
+
+## V4 릴리스 노트
+
+신규 기능:
+
+1. **V4는 V3에서 발생하는 비정수 배율 업샘플링으로 인한 금속성 잡음 문제를 수정했으며, 소리가 먹먹해지는 것을 방지하기 위해 기본적으로 48kHz 오디오를 출력합니다 (V3는 기본적으로 24kHz만 지원)**. 개발자는 V4를 V3의 직접적인 대체 버전으로 보고 있지만 추가 테스트가 필요합니다.
+   [자세히 보기](<https://github.com/RVC-Boss/GPT-SoVITS/wiki/GPT%E2%80%90SoVITS%E2%80%90v3v4%E2%80%90features-(%E6%96%B0%E7%89%B9%E6%80%A7)>)
+
+V1/V2/V3 환경에서 V4로 전환 방법:
+
+1. 일부 의존 패키지를 업데이트하기 위해 `pip install -r requirements.txt` 명령어를 실행하세요.
+
+2. GitHub에서 최신 코드를 클론하세요.
+
+3. [huggingface](https://huggingface.co/lj1995/GPT-SoVITS/tree/main)에서 V4 사전 학습 모델(`gsv-v4-pretrained/s2v4.ckpt` 및 `gsv-v4-pretrained/vocoder.pth`)을 다운로드하고 `GPT_SoVITS/pretrained_models` 디렉토리에 넣으세요.
+
+## V2Pro 릴리스 노트
+
+신규 기능:
+
+1. **V2보다 약간 높은 VRAM 사용량이지만 성능은 V4보다 우수하며, V2 수준의 하드웨어 비용과 속도를 유지합니다**.
+   [자세히 보기](<https://github.com/RVC-Boss/GPT-SoVITS/wiki/GPT%E2%80%90SoVITS%E2%80%90features-(%E5%90%84%E7%89%88%E6%9C%AC%E7%89%B9%E6%80%A7)>)
+
+2. V1/V2와 V2Pro 시리즈는 유사한 특징을 가지며, V3/V4도 비슷한 기능을 가지고 있습니다. 평균 음질이 낮은 학습 데이터셋에서는 V1/V2/V2Pro가 좋은 결과를 내지만 V3/V4는 그렇지 못합니다. 또한 V3/V4의 합성 음색은 전체 학습 데이터셋보다는 참고 음성에 더 가깝습니다.
+
+V1/V2/V3/V4 환경에서 V2Pro로 전환 방법:
+
+1. 일부 의존 패키지를 업데이트하기 위해 `pip install -r requirements.txt` 명령어를 실행하세요.
+
+2. GitHub에서 최신 코드를 클론하세요.
+
+3. [huggingface](https://huggingface.co/lj1995/GPT-SoVITS/tree/main)에서 V2Pro 사전 학습 모델(`v2Pro/s2Dv2Pro.pth`, `v2Pro/s2Gv2Pro.pth`, `v2Pro/s2Dv2ProPlus.pth`, `v2Pro/s2Gv2ProPlus.pth`, 및 `sv/pretrained_eres2netv2w24s4ep4.ckpt`)을 다운로드하고 `GPT_SoVITS/pretrained_models` 디렉토리에 넣으세요.
 
 ## 할 일 목록
 
@@ -302,7 +367,7 @@ v2 환경에서 v3 사용하기:
 
 명령줄을 사용하여 UVR5용 WebUI 열기
 
-```
+```bash
 python tools/uvr5/webui.py "<infer_device>" <is_half> <webui_port_uvr5>
 ```
 
@@ -313,7 +378,7 @@ python mdxnet.py --model --input_root --output_vocal --output_ins --agg_level --
 
 명령줄을 사용하여 데이터세트의 오디오 분할을 수행하는 방법은 다음과 같습니다.
 
-```
+```bash
 python audio_slicer.py \
     --input_path "<path_to_original_audio_file_or_directory>" \
     --output_root "<directory_where_subdivided_audio_clips_will_be_saved>" \
@@ -325,7 +390,7 @@ python audio_slicer.py \
 
 명령줄을 사용하여 데이터 세트 ASR 처리를 수행하는 방법입니다(중국어만 해당).
 
-```
+```bash
 python tools/asr/funasr_asr.py -i <input> -o <output>
 ```
 
@@ -333,7 +398,7 @@ ASR 처리는 Faster_Whisper(중국어를 제외한 ASR 마킹)를 통해 수행
 
 (진행률 표시줄 없음, GPU 성능으로 인해 시간 지연이 발생할 수 있음)
 
-```
+```bash
 python ./tools/asr/fasterwhisper_asr.py -i <input> -o <output> -l <language> -p <precision>
 ```
 
@@ -360,6 +425,7 @@ python ./tools/asr/fasterwhisper_asr.py -i <input> -o <output> -l <language> -p 
 - [Chinese Speech Pretrain](https://github.com/TencentGameMate/chinese_speech_pretrain)
 - [Chinese-Roberta-WWM-Ext-Large](https://huggingface.co/hfl/chinese-roberta-wwm-ext-large)
 - [BigVGAN](https://github.com/NVIDIA/BigVGAN)
+- [eresnetv2](https://modelscope.cn/models/iic/speech_eres2netv2w24s4ep4_sv_zh-cn_16k-common)
 
 ### 추론용 텍스트 프론트엔드
 
