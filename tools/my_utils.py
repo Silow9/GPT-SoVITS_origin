@@ -19,6 +19,7 @@ def load_audio(file, sr):
         # This launches a subprocess to decode audio while down-mixing and resampling as necessary.
         # Requires the ffmpeg CLI and `ffmpeg-python` package to be installed.
         file = clean_path(file)  # 防止小白拷路径头尾带了空格和"和回车
+        print(f'声源路径地址: file')
         if os.path.exists(file) is False:
             raise RuntimeError("You input a wrong audio path that does not exists, please fix it!")
         out, _ = (
